@@ -10,6 +10,7 @@
     />
   </head>
   <body>
+    
     <div class="container">
       <div class="jumbotron text-center">
         <h1><b>Mission to Mars</b></h1>
@@ -23,10 +24,11 @@
           >
         </p>
       </div>
+      {% for mars_website in mars_websites %}
       <div class="row">
         <div class="col">
           <h2><b>Latest Mars News</b></h2>
-          <h5 class="heading">{{mars_website.mars_news}}</h5>
+          <h5 class="heading">{{mars_website["Mars News"]}}</h5>
           <p>{{mars_website.mars_paragraph}}</p>
         </div>
       </div>
@@ -46,7 +48,8 @@
             <h2><b> Mars Hemispheres</b></h2>
             <img src="{{mars_website.hemispheres}}" class="card-img-top" />
             <div class="card-body">
-              <h5 class="card-title">{{mars_website.hemispheres}}</h5>
+              <h5 class="card-title">{{mars_websites.hemispheres}}</h5>
+              {% endfor %}
             </div>
           </div>
         </div>
