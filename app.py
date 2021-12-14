@@ -7,6 +7,7 @@ app = Flask(__name__, template_folder='templates')
 
 mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_website")
 
+
 @app.route("/")
 def index():
     mars_website = mongo.db.collection.find_one()

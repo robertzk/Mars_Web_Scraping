@@ -39,7 +39,8 @@ def scrape():
 
     browser.quit()
 
-    mars_facts = pd.read_html('https://galaxyfacts-mars.com/', index_col=0, header=0)[0].to_html(classes='table table-striped')
+    mars_facts = pd.read_html('https://galaxyfacts-mars.com/',
+                              index_col=0, header=0)[0].to_html(classes='table table-striped')
 
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
