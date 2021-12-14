@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Get To Know Mars!</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+  </head>
+<body>
+  <div class="container">
+      <div class="jumbotron text-center">
+        <h1><b>Mission to Mars</b></h1>
+        <p>
+          <a
+            class="btn btn-primary btn-lg"
+            href="http://127.0.0.1:5000/scrape"
+            role="button"
+            style="background-color: rgb(50, 130, 180)"
+            >Scrape New Data</a>
+        </p>
+      </div>
+        <div class="row">
+          <div class="col">
+            <h2><b>Latest Mars News</b></h2>
+            <h5 class="heading">{{mars_website.mars_news}}</h5>
+            <p>{{mars_website.mars_paragraph}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div>
+         <h2><b>Featured Mars Image</b></h2>
+         <img src="{{mars_website.featured_image}}" alt ="featured image">
+        </div>
+        <div class="row">
+          <div class="col col-lg-2">
+            <h2><b>Mars Facts</b></h2>
+            {{mars_website.mars_facts}}
+        </div>
+      </div>
+      <div class="card-deck">
+        <div class= "col">
+          <h2><b> Mars Hemispheres</b></h2>
+        <img src={{mars_website.hemispheres}} class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{mars_website.hemispheres}}</h5>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -4,6 +4,7 @@ from splinter import Browser
 import pandas as pd
 import requests
 import pymongo
+from webdriver_manager.chrome import ChromeDriverManager
 
 conn = 'mongodb://localhost:27017'
 client = pymongo.MongoClient(conn)
@@ -11,7 +12,7 @@ db = client.mars_news_db
 collection = db.articles
 
 
-def scraper():
+def scrape():
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
     url = "https://redplanetscience.com/"
@@ -38,12 +39,11 @@ def scraper():
 
     browser.quit()
 
-    mars_facts = pd.read_html('https://galaxyfacts-mars.com/',
-                              index_col=0, header=0)[0].to_html(classes='table table-striped')
+    mars_facts = pd.read_html('https://galaxyfacts-mars.com/', index_col=0, header=0)[0].to_html(classes='table table-striped')
 
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', **executable_path, headless=False)
-    hemi_url = ('https://marshemispheres.com/')
+    hemi_url = browser.visit('https://marshemispheres.com/')
 
     hemispheres = []
 
@@ -57,10 +57,10 @@ def scraper():
     browser.quit()
 
     mars_web_info = {
-        'Mars News': news_title,
-        'Mars Paragraph': news_p,
-        'Featured Image': img,
-        'Mars Facts': mars_facts,
-        'Hemispheres': hemispheres
+        'mars_news': news_title,
+        'mars_paragraph': news_p,
+        'featured_image': img,
+        'mars_facts': mars_facts,
+        'hemispheres': hemispheres
     }
     return mars_web_info
