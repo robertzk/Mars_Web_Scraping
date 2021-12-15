@@ -11,7 +11,10 @@ mongo = PyMongo(app, uri="mongodb://localhost:27017/mars_website")
 @app.route("/")
 def index():
     mars_websites = mongo.db.mars_website.find({})
-    mars_websites = { key.replace(" ", "_").lower(): value for (key, value) in mars_websites.items() }
+    mars_websites = [
+        { key.replace(" ", "_").lower(): value for (key, value) in website.items() }
+        for website in list(mars_websites)
+    ]
     return render_template("index.html", mars_websites=list(mars_websites))
 
 
