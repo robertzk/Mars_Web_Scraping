@@ -24,12 +24,11 @@
           >
         </p>
       </div>
-      {{(mars_websites) }}
       {% for mars_website in mars_websites %}
       <div class="row">
         <div class="col">
           <h2><b>Latest Mars News</b></h2>
-          <h5 class="heading">{{mars_website["Mars News"]}}</h5>
+          <h5 class="heading">{{mars_website.mars_news}}</h5>
           <p>{{mars_website.mars_paragraph}}</p>
         </div>
       </div>
@@ -41,17 +40,18 @@
         <div class="row">
           <div class="col col-lg-2">
             <h2><b>Mars Facts</b></h2>
-            {{mars_website.mars_facts}}
+            {{mars_website.mars_facts | safe}}
           </div>
         </div>
         <div class="card-deck">
           <div class="col">
             <h2><b> Mars Hemispheres</b></h2>
-            <img src="{{mars_website.hemispheres}}" class="card-img-top" />
+            {% for hemisphere in mars_website.hemispheres %}
             <div class="card-body">
-              <h5 class="card-title">{{mars_website.hemispheres}}</h5>
-              
+              <img src="{{hemisphere.url}}" class="card-img-top" />
+              <h5 class="card-title">{{hemisphere.title}}</h5>
             </div>
+            {% endfor %}
           </div>
         </div>
       </div>
